@@ -1,19 +1,21 @@
 extends Node
 
 ## Node Variables
-var OverpassAPIHTTPRequestor: HTTPRequestor
 var RequestorOutput: Dictionary
 var BboxCoordinates: String = "53.7490293,-0.3974381,53.7510890,-0.3922175"
+var SimulationNetworkStructure: NetworkStructure
 
 ## Node Refrences
 @onready var HTTPRequestNode = $HTTPRequest
+
+## Would prob be a good idea to multithread this whole thing at some point, at the very least, make it run on a thread in the background so the graphics can still work
 
 # -----------------------------------------------------------------------------------------------------------------------------------------------------
 # Main
 # -----------------------------------------------------------------------------------------------------------------------------------------------------
 func _ready() -> void:
 	# Setting up the HTTP requestor
-	OverpassAPIHTTPRequestor = HTTPRequestor.new(HTTPRequestNode, 10, 1.5)
+	var OverpassAPIHTTPRequestor: HTTPRequestor = HTTPRequestor.new(HTTPRequestNode, 10, 1.5)
 	OverpassAPIHTTPRequestor.NameOfRequest = "Test HTTP Request"
 	OverpassAPIHTTPRequestor.Header = "https://overpass-api.de/api/interpreter"
 	OverpassAPIHTTPRequestor.ContentType = "application/x-www-form-urlencoded"
@@ -37,6 +39,10 @@ func _ready() -> void:
 	# Making the call and waiting for the result
 	OverpassAPIHTTPRequestor.send_http_request_post()
 	await OverpassAPIHTTPRequestor.http_request_finished
+	
+	# Setting up the OSM to Sim format converter
+	var OSMtoSimFormatConverter: OSMToSimConverter = OSMToSimConverter.new()
+	SimulationNetworkStructure = OSMtoSimFormatConverter.convert_to_sim_format(RequestorOutput)
 	
 # -----------------------------------------------------------------------------------------------------------------------------------------------------
 # Functions
