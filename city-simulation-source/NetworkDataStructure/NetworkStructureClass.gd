@@ -2,7 +2,7 @@
 class_name NetworkStructure extends RefCounted
 
 # Member Variables
-var Connections: Dictionary[int, Connection]
+var Connections: Dictionary[String, Connection]
 var ConnectionPositonalNodes: Dictionary[int, PositionalNode]
 var Places: Dictionary
 

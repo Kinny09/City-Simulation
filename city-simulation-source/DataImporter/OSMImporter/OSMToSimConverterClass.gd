@@ -25,21 +25,31 @@ func _init(_TopLeftReferencePoint: ReferencePoint, _BottomRightReferencePoint: R
 	BottomRightReferencePoint.GlobalY = bottomRightReferencePointGlobalXY[1]
 
 # Converts the format from OSM to the format that the simulation uses, returns a fully populated NetworkStructure
-func convert_to_sim_format(input: Dictionary) -> NetworkStructure:
-	var simulationNetworkStructure: NetworkStructure = NetworkStructure.new()
-	
+func convert_roads_to_sim_format(networkToEdit: NetworkStructure, input: Dictionary) -> NetworkStructure:
 	# The nodes are converted into PositionalNodes to later be given parents once the connections are created.
 	for element: Dictionary in input["elements"]:
 		if element["type"] == "node":
 			var positionOfPositionalNode: Vector2 = convert_long_lat_to_screen_XY(element["lat"], element["lon"])
 			var newPositionalNode: PositionalNode = PositionalNode.new(positionOfPositionalNode)
 			
-			simulationNetworkStructure.ConnectionPositonalNodes[element["id"]] = newPositionalNode
+			networkToEdit.ConnectionPositonalNodes[element["id"]] = newPositionalNode
 	
 	# The ways are converted to connections by running through the list of nodes in the way and turns them into connections
 	for element: Dictionary in input["elements"]:
 		if element["type"] == "way":
-			var connectionName: String = "%s" % [element["id"]] # TEMPORARY Make a proper setup for this that actually grabs the real name of the road
+			# Presetting the tags that need to always have a result
+			var speedLimit: int = 30
+			
+			# Grabs and sets the necessary tags
+			var elementTags: Dictionary = element["tags"]
+			for tagName in elementTags:
+				match tagName:
+					"maxspeed":
+						var speed = elementTags["maxspeed"]
+						speed = int(speed.get_slice(" ", 0))
+						speedLimit = speed
+			
+			# Setting the start and end nodes of the connection
 			var startNodeIndex: int = -1
 			var endNodeIndex: int = 0
 			
@@ -47,16 +57,29 @@ func convert_to_sim_format(input: Dictionary) -> NetworkStructure:
 				startNodeIndex += 1
 				endNodeIndex += 1
 				
-				var startNode = simulationNetworkStructure.ConnectionPositonalNodes[element["nodes"][startNodeIndex]]
-				var endNode = simulationNetworkStructure.ConnectionPositonalNodes[element["nodes"][endNodeIndex]]
+				var startNode: PositionalNode = networkToEdit.ConnectionPositonalNodes[element["nodes"][startNodeIndex]]
+				var endNode: PositionalNode = networkToEdit.ConnectionPositonalNodes[element["nodes"][endNodeIndex]]
 				
-				var newConnection: Connection = Connection.new(connectionName, startNode, endNode)
+				var newConnection: Connection = Connection.new(startNode, endNode)
 				startNode.ParentConnection = newConnection
 				endNode.ParentConnection = newConnection
 				
-				simulationNetworkStructure.Connections[element["id"]] = newConnection
-	
-	return simulationNetworkStructure
+				# Setting the name to either the name of the road or the connections ID depending on if the way has a name
+				var connectionID: String = "%d:%s" % [element["id"], startNodeIndex]
+				
+				if element["tags"].has("name") == true:
+					newConnection.Name = element["tags"]["name"]
+				else:
+					newConnection.Name = connectionID
+					
+				# Setting the connection tags
+				newConnection.SpeedLimit = speedLimit
+				
+				# Adding the connection to the network
+				networkToEdit.Connections[connectionID] = newConnection
+				
+	# Returning the network
+	return networkToEdit
 
 func convert_long_lat_to_global_XY(longitude : float, latitude : float) -> Vector2:
 	var x = RADIUS_OF_EARTH * longitude * cos((TopLeftReferencePoint.Latitude + BottomRightReferencePoint.Latitude)/2)

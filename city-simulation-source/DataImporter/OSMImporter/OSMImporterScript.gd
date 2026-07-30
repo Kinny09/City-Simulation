@@ -2,7 +2,7 @@ extends Node
 
 ## Node Variables
 var RequestorOutput: Dictionary
-var SimulationNetworkStructure: NetworkStructure
+var SimulationNetworkStructure: NetworkStructure = NetworkStructure.new()
 
 ## Constants (These will be temporary, just here for debugging purposes for now
 const BBOX_COORDINATES_STRING: String = "53.7490293,-0.3974381,53.7510890,-0.3922175"
@@ -11,6 +11,7 @@ const SCREEN_COORDINATES: Vector4 = Vector4(-2000, -2324, 2000, 2324)
 
 ## Node Refrences
 @onready var HTTPRequestNode = $HTTPRequest
+@onready var DataImporter = $".."
 
 ## Would prob be a good idea to multithread this whole thing at some point, at the very least, make it run on a thread in the background so the graphics can still work
 ## On second through, this might actually be relativley difficult to mulithread. Or atleas, it'll need a complete rewrite
@@ -49,7 +50,7 @@ func _ready() -> void:
 	var topLeftReferencePoint: ReferencePoint = ReferencePoint.new(SCREEN_COORDINATES[0], SCREEN_COORDINATES[1], BBOX_COORDINATES[2], BBOX_COORDINATES[1])
 	var bottomRightReferencePoint: ReferencePoint = ReferencePoint.new(SCREEN_COORDINATES[2], SCREEN_COORDINATES[3], BBOX_COORDINATES[0], BBOX_COORDINATES[3])
 	var OSMtoSimFormatConverter: OSMToSimConverter = OSMToSimConverter.new(topLeftReferencePoint, bottomRightReferencePoint)
-	SimulationNetworkStructure = OSMtoSimFormatConverter.convert_to_sim_format(RequestorOutput)
+	SimulationNetworkStructure = OSMtoSimFormatConverter.convert_roads_to_sim_format(SimulationNetworkStructure, RequestorOutput)
 	
 # -----------------------------------------------------------------------------------------------------------------------------------------------------
 # Functions

@@ -2,12 +2,12 @@
 class_name Connection extends RefCounted
 
 # Member Variables
-var Name: String
 var StartNode: PositionalNode
 var EndNode: PositionalNode
+var Name: String
+var SpeedLimit: int
 
 # Constructor
-func _init(_Name: String, _StartNode: PositionalNode, _EndNode: PositionalNode):
-	Name = _Name
+func _init(_StartNode: PositionalNode, _EndNode: PositionalNode):
 	StartNode = _StartNode
 	EndNode = _EndNode
