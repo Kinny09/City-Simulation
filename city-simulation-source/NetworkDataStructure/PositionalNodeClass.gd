@@ -2,10 +2,8 @@
 class_name PositionalNode extends RefCounted
 
 # Member Variables
-var X: float
-var Y: float
+var Position: Vector2
 var ParentConnection: Connection
 
-func _init(_X: float, _Y: float):
-	X = _X
-	Y = _Y
+func _init(_Position):
+	Position = _Position
