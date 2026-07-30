@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bdvrk2xd00o73" path="res://DataImporter/DataImporter.gd" id="1_bhdv5"]
 [ext_resource type="Script" uid="uid://o720n4bliiew" path="res://DataImporter/OSMImporter/OSMImporterScript.gd" id="1_kh4pn"]
+[ext_resource type="Script" uid="uid://cksd7x2ttl0nf" path="res://DataImporter/temp_debug_visualiser.gd" id="4_rgxtj"]
 
 [node name="DataImporter" type="Node2D" unique_id=2001272772]
 script = ExtResource("1_bhdv5")
@@ -10,3 +11,6 @@ script = ExtResource("1_bhdv5")
 script = ExtResource("1_kh4pn")
 
 [node name="HTTPRequest" type="HTTPRequest" parent="OSMImporter" unique_id=1134718632]
+
+[node name="TempDebugVisualiser" type="Node2D" parent="." unique_id=43887508]
+script = ExtResource("4_rgxtj")

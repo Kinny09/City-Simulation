@@ -1,7 +1,7 @@
 extends Node2D
 
 # Signals
-signal DATA_IMPORTER_FINISHED()
+signal DATA_IMPORTER_FINISHED(Network: NetworkStructure)
 
 ## Called when the node enters the scene tree for the first time.
 #func _ready() -> void:

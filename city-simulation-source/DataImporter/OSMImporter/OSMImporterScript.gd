@@ -5,11 +5,14 @@ var RequestorOutput: Dictionary
 var SimulationNetworkStructure: NetworkStructure = NetworkStructure.new()
 
 ## Constants (These will be temporary, just here for debugging purposes for now
-const BBOX_COORDINATES_STRING: String = "53.7490293,-0.3974381,53.7510890,-0.3922175"
-const BBOX_COORDINATES: Vector4 = Vector4(53.7490293,-0.3974381,53.7510890,-0.3922175)
+# 53.7490293,-0.3974381,53.7510890,-0.3922175 - A small test area of Hull
+# 53.715000,-0.4836188,53.8109399,-0.2109668 - All of Hull
+
+const BBOX_COORDINATES_FOR_IMPORT: String = "53.7490293,-0.3974381,53.7510890,-0.3922175"
+const BBOX_COORDINATES_FOR_SCALE: Vector4 = Vector4(53.715000,-0.4836188,53.8109399,-0.2109668)
 const SCREEN_COORDINATES: Vector4 = Vector4(-2000, -2324, 2000, 2324)
 
-## Node Refrences
+## Node References
 @onready var HTTPRequestNode = $HTTPRequest
 @onready var DataImporter = $".."
 
@@ -40,17 +43,20 @@ func _ready() -> void:
 			>;
 		);
 		out;
-	""" % [BBOX_COORDINATES_STRING]
+	""" % [BBOX_COORDINATES_FOR_IMPORT]
 	
 	# Making the call and waiting for the result
 	OverpassAPIHTTPRequestor.send_http_request_post()
 	await OverpassAPIHTTPRequestor.http_request_finished
 	
 	# Setting up the OSM to Sim format converter
-	var topLeftReferencePoint: ReferencePoint = ReferencePoint.new(SCREEN_COORDINATES[0], SCREEN_COORDINATES[1], BBOX_COORDINATES[2], BBOX_COORDINATES[1])
-	var bottomRightReferencePoint: ReferencePoint = ReferencePoint.new(SCREEN_COORDINATES[2], SCREEN_COORDINATES[3], BBOX_COORDINATES[0], BBOX_COORDINATES[3])
+	var topLeftReferencePoint: ReferencePoint = ReferencePoint.new(SCREEN_COORDINATES[0], SCREEN_COORDINATES[1], BBOX_COORDINATES_FOR_SCALE[2], BBOX_COORDINATES_FOR_SCALE[1])
+	var bottomRightReferencePoint: ReferencePoint = ReferencePoint.new(SCREEN_COORDINATES[2], SCREEN_COORDINATES[3], BBOX_COORDINATES_FOR_SCALE[0], BBOX_COORDINATES_FOR_SCALE[3])
 	var OSMtoSimFormatConverter: OSMToSimConverter = OSMToSimConverter.new(topLeftReferencePoint, bottomRightReferencePoint)
 	SimulationNetworkStructure = OSMtoSimFormatConverter.convert_roads_to_sim_format(SimulationNetworkStructure, RequestorOutput)
+	
+	# Tell the rest of the code that the importing is done
+	DataImporter.DATA_IMPORTER_FINISHED.emit(SimulationNetworkStructure)
 	
 # -----------------------------------------------------------------------------------------------------------------------------------------------------
 # Functions
