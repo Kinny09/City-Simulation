@@ -1,7 +1,15 @@
-# A class that handles converting from a Class -> savable resource and vice versa
+# ---------------------------------------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------------------------
+# Class Resource Converter
+# ---------------------------------------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------------------------
+## Contains functions that convert the given NetworkStructure from their normal class forms to savable resource forms
 class_name ClassResourceConverter extends RefCounted
-	
-# Converts the classes to resources
+
+# ---------------------------------------------------------------------------------------------------------------------------------------
+# CODE
+# ---------------------------------------------------------------------------------------------------------------------------------------
+## Converts the given NetworkStructure into a NetworkStructureResource, ready for saving
 func convert_to_resources(networkStructureToConvert: NetworkStructure) -> NetworkStructureResource:
 	# The stuff to convert
 	var connectionsToConvert: Dictionary[String, Connection] = networkStructureToConvert.Connections
@@ -31,7 +39,7 @@ func convert_to_resources(networkStructureToConvert: NetworkStructure) -> Networ
 		
 	return convertedNetworkStructure
 
-# Converts the resources to classes
+## Converts the given NetworkStructureResource into a NetworkStructure, ready for the simulation to work with
 func convert_to_classes(loadedNetworkStructureToConvert: NetworkStructureResource) -> NetworkStructure:
 	# The stuff to convert
 	var connectionsToConvert: Dictionary[String, ConnectionResource] = loadedNetworkStructureToConvert.Connections

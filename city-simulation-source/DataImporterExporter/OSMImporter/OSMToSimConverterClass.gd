@@ -1,14 +1,27 @@
-## A class that handles converting OSM data formats to the sim format
+# ---------------------------------------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------------------------
+# OSM to Sim Converter
+# Handles converting the data from the OSM format to the Sim format, also handles the longitude and latitude to X and Y conversions
+# ---------------------------------------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------------------------
+## Handles converting the data from the OSM format to the Sim format, also handles the longitude and latitude to X and Y conversions
 class_name OSMToSimConverter extends RefCounted
 
- # Constants
+# ---------------------------------------------------------------------------------------------------------------------------------------
+# Constants
+# ---------------------------------------------------------------------------------------------------------------------------------------
 const RADIUS_OF_EARTH = 6371
 
+# ---------------------------------------------------------------------------------------------------------------------------------------
+# Member Variable Declaration
+# ---------------------------------------------------------------------------------------------------------------------------------------
 # Private Member Variables
 var TopLeftReferencePoint: ReferencePoint
 var BottomRightReferencePoint: ReferencePoint
 
+# ---------------------------------------------------------------------------------------------------------------------------------------
 # Constructor
+# ---------------------------------------------------------------------------------------------------------------------------------------
 func _init(_TopLeftReferencePoint: ReferencePoint, _BottomRightReferencePoint: ReferencePoint):
 	TopLeftReferencePoint = _TopLeftReferencePoint
 	BottomRightReferencePoint = _BottomRightReferencePoint
@@ -22,7 +35,10 @@ func _init(_TopLeftReferencePoint: ReferencePoint, _BottomRightReferencePoint: R
 	BottomRightReferencePoint.GlobalX = bottomRightReferencePointGlobalXY[0]
 	BottomRightReferencePoint.GlobalY = bottomRightReferencePointGlobalXY[1]
 
-# Converts the format from OSM to the format that the simulation uses, returns a fully populated NetworkStructure
+# ---------------------------------------------------------------------------------------------------------------------------------------
+# CODE
+# ---------------------------------------------------------------------------------------------------------------------------------------
+## Converts the format from OSM to the Sim's format, returns a fully populated NetworkStructure
 func convert_roads_to_sim_format(networkToEdit: NetworkStructure, input: Dictionary) -> NetworkStructure:
 	# The nodes are converted into PositionalNodes to later be given parents once the connections are created.
 	for element: Dictionary in input["elements"]:
@@ -86,11 +102,13 @@ func convert_roads_to_sim_format(networkToEdit: NetworkStructure, input: Diction
 	# Returning the network
 	return networkToEdit
 
+## Converts longitude and latitude to a global X and Y that will later be scaled reference points and the screen XY
 func convert_long_lat_to_global_XY(longitude : float, latitude : float) -> Vector2:
 	var x = RADIUS_OF_EARTH * longitude * cos((TopLeftReferencePoint.Latitude + BottomRightReferencePoint.Latitude)/2)
 	var y = RADIUS_OF_EARTH * latitude
 	return Vector2(x, y)
-	
+
+## Converts the longitude and latitude to a scaled X and Y based on the reference points
 func convert_long_lat_to_screen_XY(longitude : float, latitude : float) -> Vector2:
 	var position: Vector2 = convert_long_lat_to_global_XY(longitude, latitude)
 	var x = ((position.x-TopLeftReferencePoint.GlobalX)/(BottomRightReferencePoint.GlobalX - TopLeftReferencePoint.GlobalX))

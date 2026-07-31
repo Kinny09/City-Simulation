@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://biog4ao22vufo"]
 
-[ext_resource type="Script" uid="uid://cksd7x2ttl0nf" path="res://DataImporterExporter/temp_debug_visualiser.gd" id="1_g1p1i"]
+[ext_resource type="Script" uid="uid://cksd7x2ttl0nf" path="res://Simulation/temp_debug_visualiser.gd" id="1_g1p1i"]
 [ext_resource type="PackedScene" uid="uid://d08d2ieju8ewn" path="res://DataImporterExporter/data_importer_exporter.tscn" id="2_eygpr"]
 
 [node name="Simulation" type="Node2D" unique_id=995973686]

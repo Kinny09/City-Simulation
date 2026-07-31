@@ -1,29 +1,42 @@
+# ---------------------------------------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------------------------
+# Sim Importer Exporter Script
+# Handles the saving and loading of the simulation
+# ---------------------------------------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------------------------
+
 extends Node
-
-## Node References
-@onready var DataImporterExporter = $".."
-
-## Member Variables
-var SimulationSaveFileData: SimulationDataFile = SimulationDataFile.new()
+# ---------------------------------------------------------------------------------------------------------------------------------------
+# Member Variable Declaration
+# ---------------------------------------------------------------------------------------------------------------------------------------
 var ImporterExporterConverter: ClassResourceConverter = ClassResourceConverter.new()
 
-# Setting up the signal connections
+# ---------------------------------------------------------------------------------------------------------------------------------------
+# Node References
+# ---------------------------------------------------------------------------------------------------------------------------------------
+@onready var DataImporterExporter = $".."
+
+# ---------------------------------------------------------------------------------------------------------------------------------------
+# CODE
+# ---------------------------------------------------------------------------------------------------------------------------------------
+# Connecting the signals
 func _ready() -> void:
 	DataImporterExporter.SAVE_FILE.connect(save_file)
 	DataImporterExporter.LOAD_FILE.connect(load_file)
 
-# Saves the presented data
+## Saves the data it recives in the specified file location
 func save_file(NetworkToSave: NetworkStructure, SaveLocation: String):
-	SimulationSaveFileData.SavedNetwork = ImporterExporterConverter.convert_to_resources(NetworkToSave)
+	var simulationSaveFileData: SimulationDataFile = SimulationDataFile.new()
+	simulationSaveFileData.SavedNetwork = ImporterExporterConverter.convert_to_resources(NetworkToSave)
 
-	ResourceSaver.save(SimulationSaveFileData, SaveLocation)
+	ResourceSaver.save(simulationSaveFileData, SaveLocation)
 	
-# Loads the specified file
+## Loads the specified data from the specified file location
 func load_file(SaveLocation: String):
 	if FileAccess.file_exists(SaveLocation):
-		SimulationSaveFileData = ResourceLoader.load(SaveLocation).duplicate(true)
+		var simulationSaveFileData: SimulationDataFile = ResourceLoader.load(SaveLocation).duplicate(true)
 		
-		DataImporterExporter.DATA_IMPORTER_FINISHED.emit(ImporterExporterConverter.convert_to_classes(SimulationSaveFileData.SavedNetwork))
+		DataImporterExporter.DATA_IMPORTER_FINISHED.emit(ImporterExporterConverter.convert_to_classes(simulationSaveFileData.SavedNetwork))
 	
 	else:
 		print("ERROR: File does not exist")
