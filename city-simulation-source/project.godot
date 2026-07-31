@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="City Simulation Source"
-run/main_scene="uid://b2765ey5k12fy"
+run/main_scene="uid://biog4ao22vufo"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 

@@ -1,23 +1,16 @@
-[gd_scene format=3 uid="uid://b2765ey5k12fy"]
+[gd_scene format=3 uid="uid://d08d2ieju8ewn"]
 
-[ext_resource type="Script" uid="uid://bdvrk2xd00o73" path="res://DataImporterExporter/OSMImporter.gd" id="1_bhdv5"]
+[ext_resource type="Script" uid="uid://bdvrk2xd00o73" path="res://DataImporterExporter/DataImporterExporterSignalling.gd" id="1_4h4p5"]
 [ext_resource type="Script" uid="uid://o720n4bliiew" path="res://DataImporterExporter/OSMImporter/OSMImporterScript.gd" id="1_kh4pn"]
 [ext_resource type="Script" uid="uid://cqrgflfe67jlr" path="res://DataImporterExporter/SimImporterExporter/SimImporterExporterScript.gd" id="2_o72xi"]
-[ext_resource type="Script" uid="uid://cksd7x2ttl0nf" path="res://DataImporterExporter/temp_debug_visualiser.gd" id="4_rgxtj"]
 
-[node name="DataImporterExporter" type="Node2D" unique_id=2001272772]
-script = ExtResource("1_bhdv5")
+[node name="DataImporterExporter" type="Node" unique_id=1305667917]
+script = ExtResource("1_4h4p5")
 
-[node name="SimImporterExporter" type="Node" parent="." unique_id=356379016]
+[node name="SimImporterExporter" type="Node" parent="." unique_id=362540935]
 script = ExtResource("2_o72xi")
 
-[node name="OSMImporter" type="Node" parent="." unique_id=1876753011]
+[node name="OSMImporter" type="Node" parent="." unique_id=40398903]
 script = ExtResource("1_kh4pn")
 
-[node name="HTTPRequest" type="HTTPRequest" parent="OSMImporter" unique_id=1134718632]
-
-[node name="TempDebugVisualiser" type="Node2D" parent="." unique_id=43887508]
-script = ExtResource("4_rgxtj")
-
-[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1831349011]
-polygon = PackedVector2Array(-11, -14, 11, -14, 10, 8, -12, 8)
+[node name="HTTPRequest" type="HTTPRequest" parent="OSMImporter" unique_id=991823131]

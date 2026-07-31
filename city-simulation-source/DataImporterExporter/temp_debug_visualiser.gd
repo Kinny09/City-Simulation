@@ -1,7 +1,7 @@
 extends Node2D
 
 ## Node References
-@onready var DataImporter = $".."
+@onready var DataImporter = $"../DataImporterExporter"
 
 func _ready() -> void:
 	DataImporter.DATA_IMPORTER_FINISHED.connect(start_visualisation)

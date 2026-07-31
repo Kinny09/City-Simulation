@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://b2765ey5k12fy"]
+
+[ext_resource type="Script" uid="uid://cqrgflfe67jlr" path="res://DataImporterExporter/SimImporterExporter/SimImporterExporterScript.gd" id="1_xdwa2"]
+[ext_resource type="Script" uid="uid://o720n4bliiew" path="res://DataImporterExporter/OSMImporter/OSMImporterScript.gd" id="2_mbl5t"]
+
+[node name="DataImporterExporter" type="Node2D" unique_id=2001272772]
+
+[node name="SimImporterExporter" type="Node" parent="." unique_id=356379016]
+script = ExtResource("1_xdwa2")
+
+[node name="OSMImporter" type="Node" parent="." unique_id=1876753011]
+script = ExtResource("2_mbl5t")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="OSMImporter" unique_id=1134718632]
