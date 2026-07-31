@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://d08d2ieju8ewn"]
+
+[ext_resource type="Script" uid="uid://bdvrk2xd00o73" path="res://DataImporterExporter/DataImporterExporterSignalling.gd" id="1_4h4p5"]
+[ext_resource type="Script" uid="uid://o720n4bliiew" path="res://DataImporterExporter/OSMImporter/OSMImporterScript.gd" id="1_kh4pn"]
+[ext_resource type="Script" uid="uid://cqrgflfe67jlr" path="res://DataImporterExporter/SimImporterExporter/SimImporterExporterScript.gd" id="2_o72xi"]
+
+[node name="DataImporterExporter" type="Node" unique_id=1305667917]
+script = ExtResource("1_4h4p5")
+
+[node name="SimImporterExporter" type="Node" parent="." unique_id=362540935]
+script = ExtResource("2_o72xi")
+
+[node name="OSMImporter" type="Node" parent="." unique_id=40398903]
+script = ExtResource("1_kh4pn")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="OSMImporter" unique_id=991823131]
