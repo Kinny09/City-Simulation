@@ -67,8 +67,8 @@ func convert_roads_to_sim_format(networkToEdit: NetworkStructure, input: Diction
 				newConnection.ID = connectionID
 				newConnection.StartNode = startNode
 				newConnection.EndNode = endNode
-				startNode.ParentConnection = newConnection
-				endNode.ParentConnection = newConnection
+				startNode.ParentConnections.append(newConnection)
+				endNode.ParentConnections.append(newConnection)
 				
 				# Setting the name to either the name of the road or the connections ID depending on if the way has a name
 				

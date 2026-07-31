@@ -4,4 +4,4 @@ class_name PositionalNode extends RefCounted
 # Member Variables
 var ID: int
 var Position: Vector2
-var ParentConnection: Connection
+var ParentConnections: Array[Connection]

@@ -16,23 +16,23 @@ var ImporterExporterConverter: ClassResourceConverter = ClassResourceConverter.n
 
 func _ready() -> void:
 	## Debug Saver Call
-	DataImporter.DATA_IMPORTER_FINISHED.connect(save_file)
+	#DataImporter.DATA_IMPORTER_FINISHED.connect(save_file)
 	
-	## Debug loader call
-	#await Engine.get_main_loop().create_timer(1).timeout
-	#var loadedNetworkStructure: NetworkStructure = load_file()
-	#DataImporter.DATA_IMPORTER_FINISHED.emit(loadedNetworkStructure)
+	# Debug loader call
+	await Engine.get_main_loop().create_timer(1).timeout
+	var loadedNetworkStructure: NetworkStructure = load_file()
+	DataImporter.DATA_IMPORTER_FINISHED.emit(loadedNetworkStructure)
 
 func save_file(NetworkToSave: NetworkStructure):
 	SimulationSaveFileData.SavedNetwork = ImporterExporterConverter.convert_to_resources(NetworkToSave)
 
 	ResourceSaver.save(SimulationSaveFileData, SAVE_LOCATION)
 	
-#func load_file() -> NetworkStructure:
-	#if FileAccess.file_exists(SAVE_LOCATION):
-		#SimulationSaveFileData = ResourceLoader.load(SAVE_LOCATION).duplicate(true)
-		#
-		#return SimulationSaveFileData.SavedNetwork
-	#
-	#else:
-		#return null
+func load_file() -> NetworkStructure:
+	if FileAccess.file_exists(SAVE_LOCATION):
+		SimulationSaveFileData = ResourceLoader.load(SAVE_LOCATION).duplicate(true)
+		
+		return ImporterExporterConverter.convert_to_classes(SimulationSaveFileData.SavedNetwork)
+	
+	else:
+		return null
