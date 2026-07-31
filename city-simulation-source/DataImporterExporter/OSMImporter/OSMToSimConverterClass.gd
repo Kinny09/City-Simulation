@@ -1,8 +1,6 @@
 ## A class that handles converting OSM data formats to the sim format
 class_name OSMToSimConverter extends RefCounted
 
-## Add the ability to convert latitude and longitude into X and Y
-
  # Constants
 const RADIUS_OF_EARTH = 6371
 
@@ -30,7 +28,9 @@ func convert_roads_to_sim_format(networkToEdit: NetworkStructure, input: Diction
 	for element: Dictionary in input["elements"]:
 		if element["type"] == "node":
 			var positionOfPositionalNode: Vector2 = convert_long_lat_to_screen_XY(element["lat"], element["lon"])
-			var newPositionalNode: PositionalNode = PositionalNode.new(positionOfPositionalNode)
+			var newPositionalNode: PositionalNode = PositionalNode.new()
+			newPositionalNode.ID = element["id"]
+			newPositionalNode.Position = positionOfPositionalNode
 			
 			networkToEdit.ConnectionPositonalNodes[element["id"]] = newPositionalNode
 	
@@ -60,12 +60,17 @@ func convert_roads_to_sim_format(networkToEdit: NetworkStructure, input: Diction
 				var startNode: PositionalNode = networkToEdit.ConnectionPositonalNodes[element["nodes"][startNodeIndex]]
 				var endNode: PositionalNode = networkToEdit.ConnectionPositonalNodes[element["nodes"][endNodeIndex]]
 				
-				var newConnection: Connection = Connection.new(startNode, endNode)
+				# Creating the connections ID
+				var connectionID: String = "%d:%s" % [element["id"], startNodeIndex]
+				
+				var newConnection: Connection = Connection.new()
+				newConnection.ID = connectionID
+				newConnection.StartNode = startNode
+				newConnection.EndNode = endNode
 				startNode.ParentConnection = newConnection
 				endNode.ParentConnection = newConnection
 				
 				# Setting the name to either the name of the road or the connections ID depending on if the way has a name
-				var connectionID: String = "%d:%s" % [element["id"], startNodeIndex]
 				
 				if element["tags"].has("name") == true:
 					newConnection.Name = element["tags"]["name"]

@@ -2,8 +2,6 @@
 class_name PositionalNode extends RefCounted
 
 # Member Variables
+var ID: int
 var Position: Vector2
 var ParentConnection: Connection
-
-func _init(_Position):
-	Position = _Position
