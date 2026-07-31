@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cksd7x2ttl0nf" path="res://Simulation/temp_debug_visualiser.gd" id="1_g1p1i"]
 [ext_resource type="PackedScene" uid="uid://d08d2ieju8ewn" path="res://DataImporterExporter/data_importer_exporter.tscn" id="2_eygpr"]
 
-[node name="Simulation" type="Node2D" unique_id=995973686]
+[node name="Simulation" type="Node" unique_id=902378609]
 
 [node name="TempDebugVisualiser" type="Node2D" parent="." unique_id=955160393]
 script = ExtResource("1_g1p1i")

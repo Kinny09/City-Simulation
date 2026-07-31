@@ -1,0 +1,175 @@
+[gd_scene format=3 uid="uid://d4df4gphwoyjb"]
+
+[node name="SimulationUI" type="Control" unique_id=1005698511]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ImporterExporterUI" type="TabContainer" parent="." unique_id=1097057320]
+layout_mode = 0
+offset_left = 275.0
+offset_top = 98.0
+offset_right = 959.0
+offset_bottom = 562.0
+current_tab = 0
+
+[node name="Map Importer Menu" type="PanelContainer" parent="ImporterExporterUI" unique_id=1137038661]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="ImporterExporterUI/Map Importer Menu" unique_id=1153918861]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ImporterExporterUI/Map Importer Menu/MarginContainer" unique_id=2116727047]
+layout_mode = 2
+
+[node name="CoordinateSelectors" type="HBoxContainer" parent="ImporterExporterUI/Map Importer Menu/MarginContainer/VBoxContainer" unique_id=237261449]
+layout_mode = 2
+
+[node name="TopLeftSelector" type="PanelContainer" parent="ImporterExporterUI/Map Importer Menu/MarginContainer/VBoxContainer/CoordinateSelectors" unique_id=300440654]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="ImporterExporterUI/Map Importer Menu/MarginContainer/VBoxContainer/CoordinateSelectors/TopLeftSelector" unique_id=1761582403]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="CoordinateSelector" type="VBoxContainer" parent="ImporterExporterUI/Map Importer Menu/MarginContainer/VBoxContainer/CoordinateSelectors/TopLeftSelector/MarginContainer" unique_id=1433521913]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="ImporterExporterUI/Map Importer Menu/MarginContainer/VBoxContainer/CoordinateSelectors/TopLeftSelector/MarginContainer/CoordinateSelector" unique_id=265680599]
+layout_mode = 2
+text = "Top Left Selection"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ImporterExporterUI/Map Importer Menu/MarginContainer/VBoxContainer/CoordinateSelectors/TopLeftSelector/MarginContainer/CoordinateSelector" unique_id=953877412]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="ImporterExporterUI/Map Importer Menu/MarginContainer/VBoxContainer/CoordinateSelectors/TopLeftSelector/MarginContainer/CoordinateSelector/HBoxContainer" unique_id=1513083950]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+placeholder_text = "Latitude"
+secret_character = ""
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ImporterExporterUI/Map Importer Menu/MarginContainer/VBoxContainer/CoordinateSelectors/TopLeftSelector/MarginContainer/CoordinateSelector" unique_id=1712395585]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="ImporterExporterUI/Map Importer Menu/MarginContainer/VBoxContainer/CoordinateSelectors/TopLeftSelector/MarginContainer/CoordinateSelector/HBoxContainer2" unique_id=361620384]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+placeholder_text = "Longitude"
+
+[node name="BottomRightSelector" type="PanelContainer" parent="ImporterExporterUI/Map Importer Menu/MarginContainer/VBoxContainer/CoordinateSelectors" unique_id=1108730947]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="ImporterExporterUI/Map Importer Menu/MarginContainer/VBoxContainer/CoordinateSelectors/BottomRightSelector" unique_id=597321473]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="CoordinateSelector" type="VBoxContainer" parent="ImporterExporterUI/Map Importer Menu/MarginContainer/VBoxContainer/CoordinateSelectors/BottomRightSelector/MarginContainer" unique_id=1851969416]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="ImporterExporterUI/Map Importer Menu/MarginContainer/VBoxContainer/CoordinateSelectors/BottomRightSelector/MarginContainer/CoordinateSelector" unique_id=855031461]
+layout_mode = 2
+text = "Bottom Right Selection"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ImporterExporterUI/Map Importer Menu/MarginContainer/VBoxContainer/CoordinateSelectors/BottomRightSelector/MarginContainer/CoordinateSelector" unique_id=612329799]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="ImporterExporterUI/Map Importer Menu/MarginContainer/VBoxContainer/CoordinateSelectors/BottomRightSelector/MarginContainer/CoordinateSelector/HBoxContainer" unique_id=454416846]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+placeholder_text = "Latitude"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ImporterExporterUI/Map Importer Menu/MarginContainer/VBoxContainer/CoordinateSelectors/BottomRightSelector/MarginContainer/CoordinateSelector" unique_id=1646065698]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="ImporterExporterUI/Map Importer Menu/MarginContainer/VBoxContainer/CoordinateSelectors/BottomRightSelector/MarginContainer/CoordinateSelector/HBoxContainer2" unique_id=864036220]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+placeholder_text = "Longitude"
+
+[node name="Visualiser" type="PanelContainer" parent="ImporterExporterUI/Map Importer Menu/MarginContainer/VBoxContainer" unique_id=916898597]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Load Existing Save" type="PanelContainer" parent="ImporterExporterUI" unique_id=636209798]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="ImporterExporterUI/Load Existing Save" unique_id=2008494795]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ImporterExporterUI/Load Existing Save/MarginContainer" unique_id=75053166]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ImporterExporterUI/Load Existing Save/MarginContainer/HBoxContainer" unique_id=1304790749]
+layout_mode = 2
+
+[node name="ExampleSave" type="PanelContainer" parent="ImporterExporterUI/Load Existing Save/MarginContainer/HBoxContainer/VBoxContainer" unique_id=182502793]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ImporterExporterUI/Load Existing Save/MarginContainer/HBoxContainer/VBoxContainer/ExampleSave" unique_id=874072558]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ImporterExporterUI/Load Existing Save/MarginContainer/HBoxContainer/VBoxContainer/ExampleSave/MarginContainer" unique_id=1646985658]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ImporterExporterUI/Load Existing Save/MarginContainer/HBoxContainer/VBoxContainer/ExampleSave/MarginContainer/VBoxContainer" unique_id=515611535]
+layout_mode = 2
+text = "[Name of Save]"
+
+[node name="Label2" type="Label" parent="ImporterExporterUI/Load Existing Save/MarginContainer/HBoxContainer/VBoxContainer/ExampleSave/MarginContainer/VBoxContainer" unique_id=2144418012]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.60933006, 0.6093301, 0.60933006, 1)
+theme_override_font_sizes/font_size = 10
+text = "Version: [Number]
+Time Saved: [Time]
+[And other such save information]"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ImporterExporterUI/Load Existing Save/MarginContainer/HBoxContainer/VBoxContainer/ExampleSave/MarginContainer/VBoxContainer" unique_id=6442472]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="ImporterExporterUI/Load Existing Save/MarginContainer/HBoxContainer/VBoxContainer/ExampleSave/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1529889940]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Load"
+
+[node name="Button2" type="Button" parent="ImporterExporterUI/Load Existing Save/MarginContainer/HBoxContainer/VBoxContainer/ExampleSave/MarginContainer/VBoxContainer/HBoxContainer" unique_id=402171109]
+layout_mode = 2
+text = "Delete"
+
+[node name="SaveVisualiser" type="PanelContainer" parent="ImporterExporterUI/Load Existing Save/MarginContainer/HBoxContainer" unique_id=103766706]
+layout_mode = 2
+size_flags_horizontal = 3
