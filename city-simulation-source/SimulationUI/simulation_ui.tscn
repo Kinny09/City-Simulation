@@ -14,7 +14,7 @@ script = ExtResource("1_0450w")
 
 [node name="TabMenu" type="TabContainer" parent="." unique_id=1097057320]
 layout_mode = 0
-offset_left = 275.0
+offset_left = 299.0
 offset_top = 98.0
 offset_right = 959.0
 offset_bottom = 562.0
@@ -126,13 +126,34 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="SubViewportContainer" type="SubViewportContainer" parent="TabMenu/Map Importer Menu/MarginContainer/VBoxContainer/Visualiser" unique_id=1348288559]
+clip_contents = true
+layout_mode = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="TabMenu/Map Importer Menu/MarginContainer/VBoxContainer/Visualiser/SubViewportContainer" unique_id=540804079]
+handle_input_locally = false
+size = Vector2i(640, 271)
+render_target_update_mode = 4
+
+[node name="Node2D" type="Node2D" parent="TabMenu/Map Importer Menu/MarginContainer/VBoxContainer/Visualiser/SubViewportContainer/SubViewport" unique_id=1466821179]
+
+[node name="Polygon2D" type="Polygon2D" parent="TabMenu/Map Importer Menu/MarginContainer/VBoxContainer/Visualiser/SubViewportContainer/SubViewport/Node2D" unique_id=2031718282]
+position = Vector2(71, 8)
+polygon = PackedVector2Array(100, 22, 132, 18, 202, 21, 262, 44, 260, 108, 180, 97, 111, 59, 85, 43)
+
 [node name="MapImporterFeedback" type="Label" parent="TabMenu/Map Importer Menu/MarginContainer/VBoxContainer/Visualiser" unique_id=938406144]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_color = Color(0.74658537, 9.3854965e-07, 4.813075e-07, 1)
-text = "Coordinates Not Valid
-"
+text = "Coordinates Not Valid"
 horizontal_alignment = 1
+
+[node name="GenerateMapButton" type="Button" parent="TabMenu/Map Importer Menu/MarginContainer/VBoxContainer" unique_id=1127081965]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+disabled = true
+text = "Generate Map"
 
 [node name="Load Existing Save" type="PanelContainer" parent="TabMenu" unique_id=636209798]
 visible = false
@@ -194,3 +215,79 @@ text = "Delete"
 [node name="SaveVisualiser" type="PanelContainer" parent="TabMenu/Load Existing Save/MarginContainer/HBoxContainer" unique_id=103766706]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="Selector" type="Panel" parent="." unique_id=763099755]
+visible = false
+layout_mode = 0
+offset_left = 551.0
+offset_top = 311.0
+offset_right = 626.0
+offset_bottom = 351.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Selector" unique_id=1156473188]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="ColorRect" type="ColorRect" parent="Selector/MarginContainer" unique_id=1120165917]
+modulate = Color(0.8117647, 0.3882353, 0.3529412, 0.60784316)
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="Selector" unique_id=986788841]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 3
+
+[node name="ResizeSelection_TL" type="Button" parent="Selector/GridContainer" unique_id=628970706]
+layout_mode = 2
+mouse_default_cursor_shape = 12
+
+[node name="ResizeSelection_T" type="Button" parent="Selector/GridContainer" unique_id=1647301819]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 9
+
+[node name="ResizeSelection_TR" type="Button" parent="Selector/GridContainer" unique_id=948835761]
+layout_mode = 2
+mouse_default_cursor_shape = 11
+
+[node name="ResizeSelection_L" type="Button" parent="Selector/GridContainer" unique_id=30040089]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_default_cursor_shape = 10
+
+[node name="MoveSelection" type="Button" parent="Selector/GridContainer" unique_id=378507659]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_default_cursor_shape = 6
+
+[node name="ResizeSelection_R" type="Button" parent="Selector/GridContainer" unique_id=57539567]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_default_cursor_shape = 10
+
+[node name="ResizeSelection_BL" type="Button" parent="Selector/GridContainer" unique_id=927805596]
+layout_mode = 2
+mouse_default_cursor_shape = 11
+
+[node name="ResizeSelection_B" type="Button" parent="Selector/GridContainer" unique_id=1857086865]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 9
+
+[node name="ResizeSelection_BR" type="Button" parent="Selector/GridContainer" unique_id=1230525306]
+layout_mode = 2
+mouse_default_cursor_shape = 12

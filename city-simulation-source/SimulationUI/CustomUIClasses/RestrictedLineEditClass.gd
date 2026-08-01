@@ -3,7 +3,7 @@
 # Restricted Line Edit
 # ---------------------------------------------------------------------------------------------------------------------------------------
 # ---------------------------------------------------------------------------------------------------------------------------------------
-## Allows for the limiting of the inputs to a specific type, as well as specifying error text and such. Emits a custom VALID_INPUT_SUBMITTED signal when accepted data has been inputted.
+## Allows for the limiting of the inputs to a specific type, as well as specifying error text and such. Emits a custom VALID_INPUT_SUBMITTED signal when accepted data has been inputted. Sends out NULL if an empty string is inputted.
 class_name RestrictedLineEdit extends LineEdit
 
 # ---------------------------------------------------------------------------------------------------------------------------------------
@@ -35,6 +35,9 @@ func _ready() -> void:
 	editing_toggled.connect(func(toggledOn):
 		if !toggledOn && self.text != "":
 			check_input_is_valid()
+		elif !toggledOn && self.text == "":
+			VALID_INPUT_SUBMITTED.emit(null)
+			self.placeholder_text = DefaultPlaceholderText
 		else:
 			self.placeholder_text = DefaultPlaceholderText
 	)
