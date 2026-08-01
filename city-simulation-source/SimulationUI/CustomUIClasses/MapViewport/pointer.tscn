@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://d2cwwwxaldtd0"]
+
+[node name="Pointer" type="Polygon2D" unique_id=1253730204]
+color = Color(0.77254903, 0, 0, 1)
+polygon = PackedVector2Array(0, -8, -8, 0, 0, 8, 8, 0)

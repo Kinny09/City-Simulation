@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://hm8d1epdbsv8"]
+
+[ext_resource type="Script" uid="uid://3ch0x0bikft0" path="res://SimulationUI/CustomUIClasses/MapViewport/MapViewportClass.gd" id="1_81ftm"]
+
+[node name="MapViewport" type="PanelContainer" unique_id=1992633744]
+unique_name_in_owner = true
+offset_right = 900.0
+offset_bottom = 900.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+focus_mode = 2
+mouse_filter = 1
+script = ExtResource("1_81ftm")
+
+[node name="MapViewportContainer" type="SubViewportContainer" parent="." unique_id=27956228]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+focus_mode = 2
+mouse_default_cursor_shape = 3
+stretch = true
+mouse_target = true
+
+[node name="SubViewport" type="SubViewport" parent="MapViewportContainer" unique_id=412030238]
+unique_name_in_owner = true
+handle_input_locally = false
+size = Vector2i(900, 900)
+render_target_update_mode = 4
+
+[node name="Visualiser" type="Node2D" parent="MapViewportContainer/SubViewport" unique_id=1398887553]
+unique_name_in_owner = true
+
+[node name="MapViewportCamera" type="Camera2D" parent="MapViewportContainer/SubViewport" unique_id=133572715]
+unique_name_in_owner = true

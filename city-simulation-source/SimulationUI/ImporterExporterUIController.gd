@@ -9,7 +9,7 @@ extends Control
 # ---------------------------------------------------------------------------------------------------------------------------------------
 # Debugging Constants
 # ---------------------------------------------------------------------------------------------------------------------------------------
-const SUCCESS_MESSAGE: String = "Coordinates Valid"
+const SUCCESS_MESSAGE: String = "Generate Map"
 const FAILIURE_MESSAGE: String = "Coordinates Not Valid"
 
 # ---------------------------------------------------------------------------------------------------------------------------------------
@@ -21,6 +21,7 @@ var BboxSelection: Array = [null, null, null, null]
 # CODE
 # ---------------------------------------------------------------------------------------------------------------------------------------
 func _ready() -> void:
+	# Handling the text inputs for the coordinates
 	%EditLatitude_L.VALID_INPUT_SUBMITTED.connect(func(output):
 		if output != null:
 			BboxSelection[2] = output.to_float()
@@ -52,7 +53,10 @@ func _ready() -> void:
 ## Logic for handling the bbox inputs
 func handle_bbox_inputs():
 	if !BboxSelection.has(null):
-		%MapImporterFeedback.text = SUCCESS_MESSAGE
+		%GenerateMapButton.text = SUCCESS_MESSAGE
+		%GenerateMapButton.disabled = false
 	
 	else:
-		%MapImporterFeedback.text = FAILIURE_MESSAGE
+		%GenerateMapButton.text = FAILIURE_MESSAGE
+		%GenerateMapButton.disabled = true
+	

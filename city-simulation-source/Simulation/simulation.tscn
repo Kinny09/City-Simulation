@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://cksd7x2ttl0nf" path="res://Simulation/temp_debug_visualiser.gd" id="1_g1p1i"]
 [ext_resource type="PackedScene" uid="uid://d08d2ieju8ewn" path="res://DataImporterExporter/data_importer_exporter.tscn" id="2_eygpr"]
+[ext_resource type="PackedScene" uid="uid://d4df4gphwoyjb" path="res://SimulationUI/simulation_ui.tscn" id="3_w7d4g"]
+[ext_resource type="Script" uid="uid://dvr083u0e2ldo" path="res://Simulation/camera_2d.gd" id="4_d1np5"]
 
 [node name="Simulation" type="Node" unique_id=902378609]
 
@@ -12,3 +14,10 @@ script = ExtResource("1_g1p1i")
 polygon = PackedVector2Array(-11, -14, 11, -14, 10, 8, -12, 8)
 
 [node name="DataImporterExporter" parent="." unique_id=1305667917 instance=ExtResource("2_eygpr")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1963420436]
+
+[node name="ImporterExporterUI" parent="CanvasLayer" unique_id=1005698511 instance=ExtResource("3_w7d4g")]
+
+[node name="TempDebug2DCamera" type="Camera2D" parent="." unique_id=1608514539]
+script = ExtResource("4_d1np5")
